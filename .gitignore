@@ -1,20 +1,72 @@
-# Vivado garbage
+#########################
+# Vivado Project Files
+#########################
+*.xpr
+*.xise
+*.dmp
+*.xsa
+*.rpt
 *.jou
 *.log
-*.str
-*.xpr
-*.zip
-*.xml
-*.html
 
-*/.Xil/*
-*/.cache/*
-*/.runs/*
-*/.sim/*
-*/ip_user_files/*
+#########################
+# Vivado Auto-Generated Directories
+#########################
+.cache/
+.hw/
+.ip_user_files/
+.sim/
+.runs/
+.gen/
+.Xil/
+.webtalk/
+.project/
+.srcs/sources_1/ip/*/synth/
+.srcs/sources_1/ip/*/sim/
+.srcs/sources_1/ip/*/ip_user_files/
+.srcs/sim_1/
 
-*.wdb
+#########################
+# Checkpoint and Database Files
+#########################
 *.dcp
 *.pb
-*.tmp
-*.backup*
+*.wdb
+
+#########################
+# IP Core Build Artifacts
+#########################
+ip_user_files/
+vivado*/*
+*.xml.bak
+*.html
+*.backup.jou
+*.backup.log
+
+#########################
+# Simulation garbage
+#########################
+xsim.dir/
+modelsim.ini
+transcript
+vsim.wlf
+wave.do
+
+#########################
+# OS / Editor Trash
+#########################
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+#########################
+# Vitis / HLS Stuff (if used)
+#########################
+*.bit
+*.bin
+*.elf
+.metadata/
+.sdk/
+.export/
+.vscode/
