@@ -1,0 +1,20 @@
+# Vivado garbage
+*.jou
+*.log
+*.str
+*.xpr
+*.zip
+*.xml
+*.html
+
+*/.Xil/*
+*/.cache/*
+*/.runs/*
+*/.sim/*
+*/ip_user_files/*
+
+*.wdb
+*.dcp
+*.pb
+*.tmp
+*.backup*
