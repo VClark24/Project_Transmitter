@@ -197,7 +197,8 @@ status() {
             coding="BCH"
             modulation="BPSK"
             filtering="SRRC, alpha = 0.35"
-            data_rate="25 Mbps"
+            sample_rate="25 MSPS"
+            data_rate="6.25 Mbps"
             symbol_rate="6.25 Msps"
             output_frequency="2.4 GHz"
         ;;
@@ -206,7 +207,8 @@ status() {
             coding="Convolutional"
             modulation="BPSK"
             filtering="SRRC, alpha = 0.35"
-            data_rate="25 Mbps"
+            sample_rate="25 MSPS"
+            data_rate="6.25 Mbps"
             symbol_rate="6.25 Msps"
             output_frequency="2.4 GHz"
         ;;
@@ -215,7 +217,8 @@ status() {
             coding="None"
             modulation="BPSK"
             filtering="SRRC, alpha = 0.35"
-            data_rate="25 Mbps"
+            sample_rate="25 MSPS"
+            data_rate="6.25 Mbps"
             symbol_rate="6.25 Msps"
             output_frequency="2.4 GHz"
         ;;
@@ -224,8 +227,9 @@ status() {
             coding="None"
             modulation="OQPSK"
             filtering="SRRC, alpha = 0.35"
-            data_rate="25 Mbps"
-            symbol_rate="12.5 Msps"
+            sample_rate="25 MSPS"
+            data_rate="12.5 Mbps"
+            symbol_rate="6.25 Msps"
             output_frequency="2.4 GHz to 2.48 GHz"
         ;;
         *)
@@ -233,6 +237,7 @@ status() {
             coding="Unknown"
             modulation="Unknown"
             filtering="Unknown"
+            sample_rate="Unknown"
             data_rate="Unknown"
             symbol_rate="Unknown"
         ;;
@@ -246,6 +251,7 @@ status() {
     echo "Coding scheme          : $coding"
     echo "Modulation type        : $modulation"
     echo "Filtering type         : $filtering"
+    echo "Sample rate            : $sample_rate"
     echo "Symbol rate            : $symbol_rate"
     echo "Data rate              : $data_rate"
     echo "----------------------------------------"
