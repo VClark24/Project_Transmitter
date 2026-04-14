@@ -59,33 +59,33 @@ begin
         if waveform_sel = "00" or waveform_sel = "01" or waveform_sel = "10" then
           if symbol_en = '1' then
             if prbs_in = '0' then
-              i_out <= to_signed(AMP_NEG, G_WIDTH);
+              i_out <= to_signed(AMP_NEG, G_WIDTH);        -- 0 mapped to a negative amplitude
             else
-              i_out <= to_signed(AMP_POS, G_WIDTH);
+              i_out <= to_signed(AMP_POS, G_WIDTH);        -- 1 mapped to a positive amplitude
             end if;
-            q_out <= (others => '0');
+            q_out <= (others => '0');                      -- Q remains 0 in BPSK
           end if;
 
         -- OQPSK: FHSS
         elsif waveform_sel = "11" then
           if symbol_en = '1' then
             if prbs_in = '0' then
-              i_out <= to_signed(AMP_NEG, G_WIDTH);
+              i_out <= to_signed(AMP_NEG, G_WIDTH);     -- Same mapping
             else
-              i_out <= to_signed(AMP_POS, G_WIDTH);
+              i_out <= to_signed(AMP_POS, G_WIDTH);     -- Same mapping
             end if;
           end if;
 
-          if half_symbol_en = '1' then
+          if half_symbol_en = '1' then                 -- In OQPSK, Q is offset by half a symbol period relative to  I
             if prbs_in = '0' then
-              q_out <= to_signed(AMP_NEG, G_WIDTH);
+              q_out <= to_signed(AMP_NEG, G_WIDTH);   -- Same mapping
             else
-              q_out <= to_signed(AMP_POS, G_WIDTH);
+              q_out <= to_signed(AMP_POS, G_WIDTH);   -- Same mapping
             end if;
           end if;
-
+       -- Outputs tied low if mapper not in use
         else
-          i_out <= (others => '0');
+          i_out <= (others => '0'); 
           q_out <= (others => '0');
         end if;
 
