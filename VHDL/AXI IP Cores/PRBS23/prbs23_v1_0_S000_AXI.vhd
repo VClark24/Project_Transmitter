@@ -1,5 +1,9 @@
 -------------------------------------------------------------------------------------
-
+-- This axi slave wrapper creates and defines the following registers
+-- 0x40001000 - Read/Write. Control register (enable and rests block)
+-- 0x40001004 - Read/Write. Unused
+-- 0x40001008 - Read/Write. Unused
+-- 0x4000100C - Read/Write. Unused
 -------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -348,7 +352,7 @@ begin
   end process;
 
   --------------------------------------------------------------------------
-  -- PRBS core instantiation (your existing prbs23 entity)
+  -- PRBS core instantiation (existing prbs23 entity)
   --------------------------------------------------------------------------
   u_prbs23 : entity work.prbs23
     port map (
