@@ -8,6 +8,9 @@
 --  V1.1: 11/02/2026 to incorporate telecommand selection (for framing and encoding)
 --  V1.2: 11/02/2026 add safe waveform switching (hold applied waveform during TC busy) 
 --  V1.3: 16/02/2026 add telecommand framing debug
+--  NOTE: Due to subequent testing phases, this top level file may no longer work with the 
+--  current IP cores, as they have been adapted due to subsequent testing. This is to give an 
+--  indication of the testing strategy before integration into the AD9361 reference design.
 -----------------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
