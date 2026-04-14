@@ -1,8 +1,9 @@
 ----------------------------------------------------------------------------------
 -- Company: Southampton Solent University
 -- Engineer: Vivienne Clark
--- Module Name: srrc_filter - Behavioral
+-- Module Name: SRRC Filter
 -- Comments:
+--   Previous versions were very simplistic and did not meet timing constraints.
 --   V1.4: Deeper timing-oriented rewrite
 --   - Stage 1: shift register update + symmetric sample pairing
 --   - Stage 2: multiply by SRRC coefficients
@@ -13,7 +14,6 @@
 --   - Stage 7: scale + saturate to 16-bit output
 -- Notes:
 --   - This is a pipelined FIR, so output latency is several sample_en_i pulses.
---   - Throughput remains one output per asserted sample_en_i pulse.
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -23,14 +23,11 @@ entity srrc_filter is
     port (
         clk : in std_logic;
         rst : in std_logic;
-
         sample_en_i      : in std_logic;
         symbol_en_i      : in std_logic;
         half_symbol_en_i : in std_logic;
-
         i_symbol_i : in signed(15 downto 0);
         q_symbol_i : in signed(15 downto 0);
-
         i_out_o : out signed(15 downto 0);
         q_out_o : out signed(15 downto 0)
     );
@@ -221,17 +218,15 @@ begin
                 q_out_r      <= (others => '0');
 
             else
-                ------------------------------------------------------------------
+              
                 -- Stage 7: scale + saturate
-                ------------------------------------------------------------------
                 if s6_valid = '1' then
                     i_out_r <= sat16(shift_right(i_sum_s6, 15));
                     q_out_r <= sat16(shift_right(q_sum_s6, 15));
                 end if;
 
-                ------------------------------------------------------------------
+
                 -- Stage 6: 3 -> 1
-                ------------------------------------------------------------------
                 s6_valid <= s5_valid;
 
                 if s5_valid = '1' then
@@ -242,9 +237,7 @@ begin
                     q_sum_s6 <= q_sum_v;
                 end if;
 
-                ------------------------------------------------------------------
                 -- Stage 5: 6 -> 3
-                ------------------------------------------------------------------
                 s5_valid <= s4_valid;
 
                 if s4_valid = '1' then
@@ -257,9 +250,7 @@ begin
                     q_l3_s5 <= q_l3_v;
                 end if;
 
-                ------------------------------------------------------------------
                 -- Stage 4: 11 -> 6
-                ------------------------------------------------------------------
                 s4_valid <= s3_valid;
 
                 if s3_valid = '1' then
@@ -275,9 +266,7 @@ begin
                     q_l2_s4 <= q_l2_v;
                 end if;
 
-                ------------------------------------------------------------------
                 -- Stage 3: 21 -> 11
-                ------------------------------------------------------------------
                 s3_valid <= s2_valid;
 
                 if s2_valid = '1' then
@@ -293,9 +282,7 @@ begin
                     q_l1_s3 <= q_l1_v;
                 end if;
 
-                ------------------------------------------------------------------
                 -- Stage 2: products
-                ------------------------------------------------------------------
                 s2_valid <= s1_valid;
 
                 if s1_valid = '1' then
@@ -311,9 +298,7 @@ begin
                     q_prod_s2 <= q_prod_v;
                 end if;
 
-                ------------------------------------------------------------------
                 -- Stage 1: shift register update + symmetric pair sums
-                ------------------------------------------------------------------
                 s1_valid <= sample_en_i;
 
                 if sample_en_i = '1' then
