@@ -1,3 +1,6 @@
+---------------------------------------------------------------------------------------------
+-- This top-level wrapper defines the ports of the IP core and instantiates the block itself.
+---------------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -50,6 +53,7 @@ mapper_v1_0_S00_AXI_inst : entity work.mapper_v1_0_S00_AXI
 		C_S_AXI_ADDR_WIDTH	=> C_S00_AXI_ADDR_WIDTH
 	)
 	port map (
+		-- Ports from mapper.vhd
 		prbs_bit_i       => prbs_bit_i,
 		symbol_en_i      => symbol_en_i,
 		half_symbol_en_i => half_symbol_en_i,
@@ -57,6 +61,7 @@ mapper_v1_0_S00_AXI_inst : entity work.mapper_v1_0_S00_AXI
 		inphase_o        => inphase_o,
 		quadrature_o     => quadrature_o,
 
+		-- Ports from AXI4-Lite
 		S_AXI_ACLK	    => s00_axi_aclk,
 		S_AXI_ARESETN	=> s00_axi_aresetn,
 		S_AXI_AWADDR	=> s00_axi_awaddr,
