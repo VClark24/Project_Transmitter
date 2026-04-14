@@ -1,10 +1,10 @@
--------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 -- This axi slave wrapper creates and defines the following registers
 -- 0x40001000 - Read/Write. Control register (enable and rests block)
--- 0x40001004 - Read/Write. Unused
--- 0x40001008 - Read/Write. Unused
+-- 0x40001004 - Read Only. Allows user to view current output bit of the PRBS block
+-- 0x40001008 - Read Only. Serves as the internal state register. User can view current LFSR
 -- 0x4000100C - Read/Write. Unused
--------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
