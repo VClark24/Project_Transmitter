@@ -19,20 +19,20 @@ use ieee.numeric_std.all;    -- Provides unsigned and vector arithmetic
 entity symbol_timer is
   generic(
     G_CLKS_PER_SAMPLE : integer := 4;
-    G_SAMPLES_PER_SYMBOL : integer := 4 -- MUST be even
+    G_SAMPLES_PER_SYMBOL : integer := 4 -- MUST be even AND match SSRC filter SPS
     );
   port(
     clk : in std_logic;
     reset : in std_logic;
     enable : in std_logic;
-    symbol_en : out std_logic := '0';
-    half_symbol_en : out std_logic := '0';
-    sample_en : out std_logic := '0'
+    symbol_en : out std_logic := '0';         -- Updates I, symbol rate = 6.25 Msym/s
+    half_symbol_en : out std_logic := '0';    -- Updates Q when in OQPSK mode
+    sample_en : out std_logic := '0'          -- 25 MSamples/second
     );
 end entity symbol_timer;
 
 architecture rtl of symbol_timer is
-  signal clk_count : integer range 0 to G_CLKS_PER_SAMPLE -1 := 0;
+  signal clk_count : integer range 0 to G_CLKS_PER_SAMPLE - 1 := 0;
   signal sample_count : integer range 0 to G_SAMPLES_PER_SYMBOL - 1 := 0;
   
 begin
