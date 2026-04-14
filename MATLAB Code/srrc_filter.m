@@ -9,7 +9,7 @@
 %   - Span: 10 symbols
 %   - Taps: 41
 % Outputs the filter taps in the format (which can be pasted directly into a VHDL file):
-%  to_signed(    33, TAP_BITS),
+% E.g) to_signed(    33, TAP_BITS),
 % to_signed(  -168, TAP_BITS),
 % to_signed(  -190, TAP_BITS),
 % to_signed(   -39, TAP_BITS),
