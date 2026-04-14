@@ -1,4 +1,4 @@
-%=============================================
+%===========================================================================================
 % Engineer: Vivienne Clark
 % Organisation: Southampton Solent University
 % Name: SRRC Filter Design in MATLAB
@@ -8,7 +8,13 @@
 %   - Samples per symbol: 4
 %   - Span: 10 symbols
 %   - Taps: 41
-%=============================================
+% Outputs the filter taps in the format (which can be pasted directly into a VHDL file):
+%  to_signed(    33, TAP_BITS),
+% to_signed(  -168, TAP_BITS),
+% to_signed(  -190, TAP_BITS),
+% to_signed(   -39, TAP_BITS),
+% to_signed(   123, TAP_BITS)
+%==========================================================================================
 clear;
 clc;
 
