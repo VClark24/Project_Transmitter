@@ -1,3 +1,7 @@
+------------------------------------------------------------------------
+-- This top-level wrapper instantiates the Symbol Timer IP core and
+-- defines the ports of the block.
+------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
