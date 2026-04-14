@@ -1,3 +1,6 @@
+-----------------------------------------------------------------------------------------------------
+-- This wrapper defines four read-write registers, only 1 is used and it turns the mapper on and off
+-----------------------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
