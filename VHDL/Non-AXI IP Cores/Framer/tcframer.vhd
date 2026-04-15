@@ -28,8 +28,8 @@ entity tc_framer is
     payload_bit_in : in std_logic; -- connected to prbs_output (from prbs23.vhd)
     downstream_ready : in std_logic;
 
-    payload_advance : out std_logic := '0'; -- connected to enable (from prbs23.vhd)
-    frame_bit_out : out std_logic := '0'; -- connected to prbs_in (from mapper.vhd)
+    payload_advance : out std_logic := '0'; -- connected to tc_enable_o path enable controller
+    frame_bit_out : out std_logic := '0'; -- connected to BCH encoder
 
     -- For debugging
     frame_valid : out std_logic := '0'; -- high when frame_bit_out is valid on bit_tick
@@ -60,7 +60,7 @@ architecture rtl of tc_framer is
   signal state_code : std_logic_vector(1 downto 0);
   signal frame_start_pending : std_logic := '0';
 begin
-  assert (c_fieldlen <= 1023) report "10-bit length overflow" severity failure;
+  assert (c_fieldlen <= 1023) report "10-bit length overflow" severity failure;         -- These asserts are not strictly necessary but help  to prevent incorrect/unsafe code from running
   assert (G_PAYLOAD_BYTES > 0) report "Payload must be > 0 bytes" severity failure;
   assert (payload_bits > 0) report "Payload bits must be > 0" severity failure;
 
@@ -68,7 +68,7 @@ begin
     state_code <= "00" when IDLE,
                   "01" when SEND_HEADER,
                   "10" when SEND_PAYLOAD,
-                  "11" when SEND_CRC;
+                  "11" when SEND_CRC;     -- To assist with debugging in simulation
 
   process(clk)
     variable din : std_logic;
@@ -113,7 +113,7 @@ begin
                               std_logic_vector(to_unsigned(G_SCID, 10)) &
                               std_logic_vector(to_unsigned(G_VCID, 6)) &
                               std_logic_vector(to_unsigned(c_fieldlen, 10)) &
-                              std_logic_vector(seq_count);
+                              std_logic_vector(seq_count);              -- For header design and justification, see Section 6.1.3.2 in the Final Report PDF
                 hdr_idx <= 39;
                 crc_idx <= 15;
                 pay_idx <= payload_bits - 1;
