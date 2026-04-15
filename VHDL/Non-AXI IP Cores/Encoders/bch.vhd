@@ -16,8 +16,8 @@ use ieee.numeric_std.all;
 
 entity bch_encoder is
     generic(
-        G_K_INFO_BITS   : natural := 56;
-        G_R_PARITY_BITS : natural := 7
+        G_K_INFO_BITS   : natural := 56; -- (56, 7) code
+        G_R_PARITY_BITS : natural := 7   -- (56, 7) code 
     );
     port(
         clk           : in  std_logic;
@@ -27,8 +27,8 @@ entity bch_encoder is
         data_valid    : in  std_logic;
         input_ready   : out std_logic; 
         coded_bit_out : out std_logic;
-        code_valid    : out std_logic;
-        busy          : out std_logic
+        code_valid    : out std_logic;         -- 
+        busy          : out std_logic          -- Debug port, not normally connected
     );
 end entity bch_encoder;
 
