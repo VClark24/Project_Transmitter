@@ -1,3 +1,18 @@
+-------------------------------------------------------------------------
+-- This AXI-Slave wrapper creates and defines the following registers
+-- 0x40004000 - Waveform control register (Read-Write)
+--      00 - Beacon
+--      01 - Telecommand
+--      10 - Telemetry
+--      11 - FHSS
+-- 0x40004004 - Mute control register (Read-Write)
+--      0 - Transmitter muted 
+--      1 - Transmitter not muted
+-- 0x40004008 - Unused (Read/Write)
+-- 0x4000400C - Unused (Read/Write)
+-- There is no user logic in the Transmit Controller. The user just 
+-- manipulates two registers.
+-------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
