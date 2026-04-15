@@ -23,14 +23,14 @@ entity conv_encoder is
     in_ready : out std_logic;
 
     out_bit : out std_logic;
-    out_valid : out std_logic;
+    out_valid : out std_logic; -- Debug port, not normally connected
 
-    busy : out std_logic
+    busy : out std_logic -- Debug port, not normally connected
     );
 end entity conv_encoder;
 
 architecture rtl of conv_encoder is
-  type tmconv is (S_IDLE, S_OUT_C2);
+  type tmconv is (S_IDLE, S_OUT_C2); -- Two-state FSM
   signal state : tmconv := S_IDLE;
 
   signal shift_reg : std_logic_vector(5 downto 0) := (others => '0');
@@ -53,16 +53,16 @@ begin
         case state is
             when S_IDLE =>
               if enable = '1' and in_valid = '1' then
-                c1 := in_bit xor shift_reg(5) xor shift_reg(4) xor shift_reg(3) xor shift_reg(0);
-                c2 := in_bit xor shift_reg(4) xor shift_reg(3) xor shift_reg(1) xor shift_reg(0);
-                c2_store <= not c2;
-                out_bit <= c1;
+                c1 := in_bit xor shift_reg(5) xor shift_reg(4) xor shift_reg(3) xor shift_reg(0); -- Stores C1 bit
+                c2 := in_bit xor shift_reg(4) xor shift_reg(3) xor shift_reg(1) xor shift_reg(0); -- Stores C2 bit
+                c2_store <= not c2; -- Inverts C2 bit
+                out_bit <= c1;  -- Outputs C1 bit
                 out_valid <= '1';
                 shift_reg <= in_bit & shift_reg(5 downto 1);
                 state <= S_OUT_C2;
               end if;
             when S_OUT_C2 =>
-              out_bit <= c2_store;
+              out_bit <= c2_store;   -- output C2 bit 
               out_valid <= '1';
               state <= S_IDLE;
          end case;
