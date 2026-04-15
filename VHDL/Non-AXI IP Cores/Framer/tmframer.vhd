@@ -10,6 +10,7 @@
 --  V1.4: 23/02/2026 to incorporate handshaking
 -- Comments:
 --   Compatible with CCSDS 132.0-B-3: TM Space Data Link Protocol and CCSDS 131.0-B-5: TM Synchronization and Channel Coding
+--   This is a continuous streaming code, BCH for telecommand is, in constrast, a block code
 ----------------------------------------------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -103,7 +104,7 @@ architecture rtl of tm_framer is
                     if enable = '1' then 
                        hdr_idx <= 47;
                        crc_idx <= 15;
-                       header_reg <= "00" & std_logic_vector(to_unsigned(G_SCID, 10)) & std_logic_vector(to_unsigned(G_VCID, 3)) & '0' & std_logic_vector(master_frame_count) & std_logic_vector(virtual_frame_count) & frame_status;
+                       header_reg <= "00" & std_logic_vector(to_unsigned(G_SCID, 10)) & std_logic_vector(to_unsigned(G_VCID, 3)) & '0' & std_logic_vector(master_frame_count) & std_logic_vector(virtual_frame_count) & frame_status; -- Header design given in Section 6.1.3.2 of the Final Report
                        crc_reg <= crc_init; 
                        crc_shift <= (others => '0');
                        state <= SEND_ASM;
