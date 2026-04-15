@@ -48,7 +48,7 @@ architecture rtl of tc_framer is
   constant c_fieldlen : integer := total_bytes - 1;
   constant crc_init : std_logic_vector(15 downto 0) := (others => '1');
 
-  type tcframe_fsm is (IDLE, SEND_HEADER, SEND_PAYLOAD, SEND_CRC);
+  type tcframe_fsm is (IDLE, SEND_HEADER, SEND_PAYLOAD, SEND_CRC);              -- Four-state FSM
   signal state : tcframe_fsm := IDLE;
   signal header_reg : std_logic_vector(39 downto 0);
   signal seq_count : unsigned(7 downto 0) := (others => '0');
