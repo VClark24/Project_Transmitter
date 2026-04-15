@@ -1,3 +1,8 @@
+---------------------------------------------------------------------
+-- This top-level wrapper instantiates the Transmit Controller block
+-- It defines the poerts (only outputs a mute signal and a waveform
+-- selection signal.
+---------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
