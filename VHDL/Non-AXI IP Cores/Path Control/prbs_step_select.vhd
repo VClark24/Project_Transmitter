@@ -1,3 +1,18 @@
+------------------------------------------------------------------------------------------------------------------
+-- VHDL Compatibility: IEEE Std 1076-2008
+-- Organisation: Southampton Solent University
+-- Engineer: Vivienne Clark
+-- Module Name: PRBS Step Select
+-- Revisions:
+--  V1.0: Created 16/03/2026 in GitHub (https://github.com/VClark24/Project_Transmitter)
+-- Comments:
+--   Differentiates between the Beacon and FHSS waveforms (which have the same path in the sense that they
+--   both bypass the framers and the encoders). 
+--   For the BPSK beacon, the PRBS must only step on the symbol period strobe
+--   For the OQPSK FHSS, the PRBS must step on the symbol period strobe AND the half-symbol period strobe to 
+--   maintain the half-symbol offset between I and Q
+------------------------------------------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all; -- Provides std_logic and std_logic_vector
 use ieee.numeric_std.all;    -- Provides unsigned and vector arithmetic
