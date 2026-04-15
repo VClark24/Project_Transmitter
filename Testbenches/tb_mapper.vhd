@@ -11,6 +11,7 @@
 --  1) Synchronous Reset Test
 --  2) BPSK Output Test
 --  3) OQPSK Output Test
+--  Boilerplate code generated using ChatGPT 5.2
 ---------------------------------------------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all; -- Provides std_logic and std_logic_vector
