@@ -1,3 +1,10 @@
+-------------------------------------------------------------------------------
+-- This AXI slave wrapper creates and defines the following registers:
+-- 0x40002000 - Control register (turns SRRC filter on and off) (Read-Write)
+-- 0x40002004 - Exposes current state of the SRRC filter (Read Only)
+-- 0x40002008 - Unused (Read-Write)
+-- 0x4000200C - Unused (Read-Write)
+-------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
