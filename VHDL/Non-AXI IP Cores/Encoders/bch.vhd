@@ -27,13 +27,13 @@ entity bch_encoder is
         data_valid    : in  std_logic;
         input_ready   : out std_logic; 
         coded_bit_out : out std_logic;
-        code_valid    : out std_logic;         -- 
+        code_valid    : out std_logic;         -- Debug port, not normally connected
         busy          : out std_logic          -- Debug port, not normally connected
     );
 end entity bch_encoder;
 
 architecture rtl of bch_encoder is
-    type state_bch is (S_IDLE, S_INFO, S_PARITY, S_FILLER);
+    type state_bch is (S_IDLE, S_INFO, S_PARITY, S_FILLER); -- Four-state FSM
     signal state       : state_bch := S_IDLE;
     signal state_n     : state_bch := S_IDLE;
 
@@ -124,10 +124,11 @@ begin
                     state_n <= S_INFO;
                 end if;
 
-            when S_INFO =>
+            when S_INFO => -- Takes in 56 info bits
                 busy_n <= '1';
 
-                if data_valid = '1' then
+                if data_valid = '1' then                    
+                                    
                     code_valid_n   <= '1';
                     code_bit_out_n <= data_in;  -- pass information bits directly
 
@@ -148,7 +149,7 @@ begin
                     end if;
                 end if;
 
-            when S_PARITY =>
+            when S_PARITY => -- Computes 7 parity 
                 busy_n         <= '1';
                 code_valid_n   <= '1';
                 code_bit_out_n <= not parity_reg(6);  -- CCSDS complemented parity bit
@@ -160,7 +161,7 @@ begin
                     parity_count_n <= (others => '0');
                 end if;
 
-            when S_FILLER =>
+            when S_FILLER =>            -- Fills with '0' if codeword is not fully complete
                 busy_n         <= '1';
                 code_valid_n   <= '1';
                 code_bit_out_n <= '0';  -- CCSDS filler bit
