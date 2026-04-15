@@ -19,7 +19,7 @@ These 4 Bash scripts are run within the Kuiper Linux environment:
 -	fhss.sh contains the full script for the frequency hopping functionality. This use IIO to alter the transmit frequency of the AD9361. There are five different possible frequencies in the 2.4 GHz and 2.48 GHz range. 
 -	rclocal.sh is the script that runs on Kuiper Linux and was used to initialise the transmitter. In this case it run the init_sdr.sh. 
 -	sdr_init.sh is the file run to initialise the filter. It is an adapted version of an rc.local file that had been created by the OS. It ensures that DMA mode is selected (so the custom transmitter is the data source and not any internal DDS sources), any internal DDS tones are fully turned off, the sampling rate is set in software to 25 MSPS and the output frequency set to 2.4 GHz 
-•	BOOT.BIN and system_top.bit
+•   system_top.bit
 The BOOT.BIN contains the AD9361 reference design within the custom transmit chain integrated into. It is created by using g the bootgen utility on the system_top.bit file. When stored on the SD card and inserted into the ZedBoard, the Kuiper Linux OS will boot and configure the FPGA with the implemented design. 
 
 
