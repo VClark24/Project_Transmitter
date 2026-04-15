@@ -109,7 +109,7 @@ architecture rtl of tm_framer is
                        crc_shift <= (others => '0');
                        state <= SEND_ASM;
                     end if;
-                 when SEND_ASM =>
+                 when SEND_ASM =>                          -- ASM must preceed the frame
                     frame_bit_out <= asm_32(asm_idx);
                     frame_valid   <= '1';
                     if asm_idx = 0 then
