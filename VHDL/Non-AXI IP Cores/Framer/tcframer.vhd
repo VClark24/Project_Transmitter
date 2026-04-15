@@ -7,6 +7,8 @@
 --  V1.0: Created 09/02/2026 in GitHub (https://github.com/VClark24/Project_Transmitter)
 -- Comments:
 --   Compatible with CCSDS 232.0-B-4: TC Space Data Link Protocol
+--   Payload size 14 bit. Feeds into BCH(63, 56) so payload size should be a multiple of 7.
+--      BCH unit is now 1/4 of frame worth of information
 -----------------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -16,7 +18,7 @@ entity tc_framer is
   generic (
     G_SCID          : natural range 0 to 1023 := 1;   -- 10-bit SCID
     G_VCID          : natural range 0 to 63   := 0;   -- 6-bit VCID
-    G_PAYLOAD_BYTES : natural                 := 16  -- choose a starting payload size
+    G_PAYLOAD_BYTES : natural                 := 14  -- choose a starting payload size
   );
   port (
     clk   : in  std_logic;
