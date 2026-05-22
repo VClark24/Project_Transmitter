@@ -29,7 +29,7 @@ Demonstrates the start, stop and restart functions of the transmitter. As well a
 
 
 2 Software Versions Required to Open Files
-All of the code can be opened and viewed in a Text Editor. The can also be viewed using GitHub (https://github.com/VClark24/Project_Transmitter). The main branch is contains the code as it was at the point of the Final Report submission.
+All of the code can be opened and viewed in a Text Editor. The can also be viewed using GitHub (https://github.com/VClark24/Project_Transmitter).
 
 They were created using the following software:
 •	AMD Vivado 2022.2
